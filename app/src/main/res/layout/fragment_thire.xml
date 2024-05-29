@@ -8,9 +8,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center"
         android:text="@string/thire_fragment"
-        android:textSize="28sp"
         android:textColor="@color/black"
-        android:textStyle="bold"
-        android:gravity="center"/>
+        android:textSize="28sp"
+        android:textStyle="bold" />
 </FrameLayout>

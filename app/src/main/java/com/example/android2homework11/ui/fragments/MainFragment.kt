@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.android2homework11.R
+import com.example.android2homework11.data.models.Account
 import com.example.android2homework11.databinding.FragmentMainBinding
 
 class MainFragment : Fragment() {
@@ -24,31 +24,33 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         //тут я оставил
 //        setupListener()
 
         goToFragment()
     }
 
-    private fun goToFragment()= with(binding) {
-            binding.btnSignUp.setOnClickListener{
-                val name = etName.text.toString().trim()
-                val email = etEmail.text.toString().trim()
-                val password = etPassword.text.toString().trim()
+    private fun goToFragment() = with(binding) {
+        btnSignUp.setOnClickListener {
+            val name = etName.text.toString().trim()
+            val email = etEmail.text.toString().trim()
+            val password = etPassword.text.toString().trim()
+            val model = Account(
+                name = name,
+                email = email,
+                password = password.toInt()
+            )
+            findNavController().navigate(
+                MainFragmentDirections.actionMainFragmentToSecondFragment(
+                    model
+                )
+            )
 
-                val bundle = Bundle().apply {
-                    putString(NAME, name)
-                    putString(EMAIL, email)
-                    putString(PASSWORD,password)
-                }
-                findNavController().navigate(R.id.action_mainFragment_to_secondFragment, bundle)
-
-            }
+        }
     }
 
     //тут я оставил
-    
+
 //    private fun setupListener() {
 //        binding.txtMain.setOnClickListener {
 //            findNavController().navigate(
@@ -63,7 +65,8 @@ class MainFragment : Fragment() {
         super.onDestroy()
         _binding = null
     }
-    companion object{
+
+    companion object {
         const val NAME = "name"
         const val EMAIL = "email"
         const val PASSWORD = "password"

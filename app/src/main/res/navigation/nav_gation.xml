@@ -9,23 +9,21 @@
         android:id="@+id/mainFragment"
         android:name="com.example.android2homework11.ui.fragments.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" >
+        tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_mainFragment_to_secondFragment"
             app:destination="@id/secondFragment"
             app:popUpTo="@id/mainFragment"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/secondFragment"
         android:name="com.example.android2homework11.ui.fragments.SecondFragment"
         android:label="fragment_second"
-        tools:layout="@layout/fragment_second" >
-
-        <!--        <argument-->
-<!--            android:name="name"-->
-<!--            app:argType="string"-->
-<!--            android:defaultValue="Android"/>-->
+        tools:layout="@layout/fragment_second">
+        <argument
+            android:name="model"
+            app:argType="com.example.android2homework11.data.models.Account" />
     </fragment>
     <fragment
         android:id="@+id/thireFragment"

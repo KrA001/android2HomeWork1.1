@@ -6,14 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
-import com.example.android2homework11.R
 import com.example.android2homework11.databinding.FragmentSecondBinding
 
 class SecondFragment : Fragment() {
 
     private var _binding: FragmentSecondBinding? = null
     private val binding: FragmentSecondBinding get() = _binding!!
-//    private val args by navArgs<SecondFragmentArgs>()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,25 +24,20 @@ class SecondFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        getArgs()
 
-        arguments?.let {
-            val name = it.getString("name")
-            val email = it.getString("email")
-            val password = it.getString("password")
-
-            binding.tvName.text = name
-            binding.tvEmail.text = email
-            binding.tvPassword.text = password
-        }
-
-        //тут я оставил
-//        getData()
     }
 
-    //тут я оставил
-//    private fun getData() {
-//        binding.txtSecond.text = args.name
-//    }
+    private fun getArgs() = with(binding) {
+        try {
+            val args: SecondFragmentArgs by navArgs()
+            tvName.text = args.model.name
+            tvEmail.text = args.model.email
+            tvPassword.text = args.model.password.toString()
+        } catch (_: Exception) {
+
+        }
+    }
 
     override fun onDestroy() {
         super.onDestroy()
